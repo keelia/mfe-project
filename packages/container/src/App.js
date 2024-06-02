@@ -9,6 +9,7 @@ import {
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'container-',
+  seed: 'container',
 });
 
 export default () => {
