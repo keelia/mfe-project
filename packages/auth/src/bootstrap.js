@@ -21,6 +21,7 @@ const mount = (
   return {
     onParentNavigate: ({ pathname: nextPathname }) => {
       const { pathname: currentPathname } = history.location;
+      console.log(nextPathname);
       if (currentPathname !== nextPathname) {
         history.push(nextPathname);
       }
@@ -29,9 +30,9 @@ const mount = (
 };
 
 if (process.env.NODE_ENV === 'development') {
-  const marketingOnlyRoot = document.querySelector('#_marketing_dev_root');
-  if (marketingOnlyRoot) {
-    mount(marketingOnlyRoot, { defaultHistotry: createBrowserHistory() });
+  const authOnlyRoot = document.querySelector('#_auth_dev_root');
+  if (authOnlyRoot) {
+    mount(authOnlyRoot, { defaultHistotry: createBrowserHistory() });
   }
 }
 

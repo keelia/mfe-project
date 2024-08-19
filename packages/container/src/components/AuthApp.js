@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 import { useHistory } from 'react-router-dom';
 
 export default () => {
@@ -8,7 +8,7 @@ export default () => {
   //make sure run only one time
   useEffect(() => {
     const { onParentNavigate } = mount(ref.current, {
-      initialPath: history.location.pathname,
+      initialPath: history.location.pathname, //inform auth the latest browser url, otherwise auth's memory history assumes initialState is '/'
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname: currentPathname } = history.location;
         if (currentPathname !== nextPathname) {
