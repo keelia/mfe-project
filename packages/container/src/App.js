@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import Headder from './components/Header';
+import Progress from './components/Progress';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {
   StylesProvider,
@@ -20,7 +21,7 @@ export default () => {
       <BrowserRouter>
         <div>
           <Headder />
-          <Suspense fallback={<div>Loading</div>}>
+          <Suspense fallback={<Progress />}>
             <Switch>
               <Route path="/auth" component={AuthLazy} />
               <Route path="/" component={MarketingLazy} />
