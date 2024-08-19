@@ -13,7 +13,7 @@ const generateClassName = createGenerateClassName({
   seed: 'marketing',
 });
 
-export default ({ history }) => {
+export default ({ history, isSignedIn }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>

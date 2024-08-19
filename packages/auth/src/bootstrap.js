@@ -5,7 +5,7 @@ import { createMemoryHistory, createBrowserHistory } from 'history';
 
 const mount = (
   container,
-  { onNavigate, defaultHistotry, initialPath } = {}
+  { onNavigate, defaultHistotry, initialPath, onSignIn } = {}
 ) => {
   //Create memory history object in bootstrap and pass down to App, instead of creating in App
   //Since history need a bit code to sync current marketing history status with container's history
@@ -17,11 +17,10 @@ const mount = (
   if (onNavigate) {
     history.listen(onNavigate); //whenever nav changes in marketing call onNavigate
   }
-  ReactDOM.render(<App history={history} />, container);
+  ReactDOM.render(<App history={history} onSignIn={onSignIn} />, container);
   return {
     onParentNavigate: ({ pathname: nextPathname }) => {
       const { pathname: currentPathname } = history.location;
-      console.log(nextPathname);
       if (currentPathname !== nextPathname) {
         history.push(nextPathname);
       }

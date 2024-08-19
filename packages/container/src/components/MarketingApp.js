@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { mount } from 'marketing/MarketingApp';
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+export default ({ isSignedIn }) => {
   const ref = useRef(null);
   const history = useHistory();
   //make sure run only one time
@@ -15,6 +15,7 @@ export default () => {
           history.push(nextPathname);
         }
       },
+      isSignedIn,
     });
     history.listen(onParentNavigate);
   }, []);

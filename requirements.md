@@ -110,5 +110,12 @@ This will occur all the time if we have some kind of sidebar nav that is built a
 - Container's routing STILL will be used to decide which microfrontend to show
 
 4. We want to use off-the-shelf routing solutions
-5.
-6.
+
+# Authentication - auth sub app
+
+1. Auth app is for siging in/up users
+2. Auth app is not for enforcing permissions, allowing access to certain routes, or figuring out if user is signed in
+3. Two approaches for handling auth
+
+- Each app is aware of auth - duplicating auth code in each apps
+- Centralize auth in Container(chose)
