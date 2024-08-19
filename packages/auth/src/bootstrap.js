@@ -8,14 +8,14 @@ const mount = (
   { onNavigate, defaultHistotry, initialPath, onSignIn } = {}
 ) => {
   //Create memory history object in bootstrap and pass down to App, instead of creating in App
-  //Since history need a bit code to sync current marketing history status with container's history
+  //Since history need a bit code to sync current auth app history status with container's history
   const history =
     defaultHistotry ||
     createMemoryHistory({
       initialEntries: [initialPath],
     });
   if (onNavigate) {
-    history.listen(onNavigate); //whenever nav changes in marketing call onNavigate
+    history.listen(onNavigate); //whenever nav changes in auth app call onNavigate
   }
   ReactDOM.render(<App history={history} onSignIn={onSignIn} />, container);
   return {
