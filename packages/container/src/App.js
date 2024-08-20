@@ -1,7 +1,8 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import Headder from './components/Header';
 import Progress from './components/Progress';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import {
   StylesProvider,
   createGenerateClassName,
@@ -16,12 +17,22 @@ const generateClassName = createGenerateClassName({
   seed: 'container',
 });
 
+//for access browser history instence created by <BrowserRouter/>, so create it manualy
+const history = createBrowserHistory();
+
 export default () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
+  useEffect(() => {
+    if (isSignedIn) {
+      history.push('/dashboard');
+    }
+    //no else here otherwise user without signin will always be taken to the else-given route
+  }, [isSignedIn]);
+
   return (
     <StylesProvider generateClassName={generateClassName}>
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <Headder
             isSignedIn={isSignedIn}
@@ -32,14 +43,16 @@ export default () => {
               <Route path="/auth">
                 <AuthLazy onSignIn={() => setIsSignedIn(true)} />
               </Route>
-              <Route path="/dashboard" component={DashboardLazy} />
+              <Route path="/dashboard">
+                {isSignedIn ? <DashboardLazy /> : <Redirect to="/" />}
+              </Route>
               <Route path="/">
                 <MarketingLazy isSignedIn={isSignedIn} />
               </Route>
             </Switch>
           </Suspense>
         </div>
-      </BrowserRouter>
+      </Router>
     </StylesProvider>
   );
 };
