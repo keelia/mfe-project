@@ -119,3 +119,11 @@ This will occur all the time if we have some kind of sidebar nav that is built a
 
 - Each app is aware of auth - duplicating auth code in each apps
 - Centralize auth in Container(chose)
+
+# Takeaways for mircro frontend
+
+1. Your requirements driver your achitecture
+2. Always asking "if I have to change this in the future, will I have to change another app?"
+3. Everyone will eventually forget React
+4. Don't forget the scope your CSS
+5. MFE's might causes issues in production that you don't see in dev
